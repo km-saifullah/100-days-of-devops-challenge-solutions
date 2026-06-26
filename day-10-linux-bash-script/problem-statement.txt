@@ -1,0 +1,9 @@
+The production support team of xFusionCorp Industries is working on developing some bash scripts to automate different day to day tasks. One is to create a bash script for archiving website content files. They have a static website running on App Server 1 in Stratos Datacenter, and they need to create a bash script named ecommerce_archive.sh which should accomplish the following tasks. (Also remember to place the script under the /scripts directory on App Server 1).
+
+a. Create a zip archive named xfusioncorp_ecommerce.zip of /var/www/html/ecommerce directory.
+b. Save the archive in the /archives/ directory on the App Server 1. This is a temporary storage, as archives from this location will be cleaned on a weekly basis. Therefore, the archive should also be copied to the Nautilus Storage Server so it can be retrieved later for validation purposes.
+c. Copy the created archive to the Nautilus Storage Server server in the /archives/ location.
+d. Please make sure script won't ask for password while copying the archive file. Additionally, the respective server user (for example, tony in case of App Server 1) must be able to run it.
+e. Do not use sudo inside the script.
+
+The zip package must be installed on given App Server before executing the script. This package is essential for creating the zip archive of the website files. Install it manually outside the script.
