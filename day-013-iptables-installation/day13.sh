@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 # ============================================
@@ -72,4 +71,3 @@ iptables -L INPUT -n --line-numbers
 
 echo
 echo "Firewall configuration completed successfully."
-```

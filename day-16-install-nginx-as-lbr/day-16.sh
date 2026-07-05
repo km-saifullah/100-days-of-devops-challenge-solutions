@@ -1,10 +1,4 @@
-```bash
 #!/bin/bash
-
-# ==========================================================
-# Configure Nginx Load Balancer
-# Server : stlb01
-# ==========================================================
 
 set -e
 
@@ -139,4 +133,3 @@ echo "Now verify from the Jump Host:"
 echo
 echo "curl http://stlb01"
 echo
-```

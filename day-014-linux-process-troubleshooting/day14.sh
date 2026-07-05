@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 set -e
@@ -95,4 +94,3 @@ echo
 echo "=========================================="
 echo "Apache is running successfully on port $PORT"
 echo "=========================================="
-```

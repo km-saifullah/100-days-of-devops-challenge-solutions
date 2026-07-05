@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 # ============================================
@@ -113,4 +112,3 @@ echo
 echo "Run the following command from the Jump Host:"
 echo
 echo "curl http://stapp01:$PORT"
-```
