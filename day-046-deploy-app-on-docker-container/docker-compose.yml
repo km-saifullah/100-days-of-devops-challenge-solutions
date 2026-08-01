@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  web:
+    image: php:apache
+    container_name: php_web
+    ports:
+      - "8084:80"
+    volumes:
+      - /var/www/html:/var/www/html
+    restart: unless-stopped
+
+  db:
+    image: mariadb:latest
+    container_name: mysql_web
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: database_web
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: Str@tos123!
+      MYSQL_ROOT_PASSWORD: Root@12345!
+    restart: unless-stopped
