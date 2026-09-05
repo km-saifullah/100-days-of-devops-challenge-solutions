@@ -1,0 +1,53 @@
+pipeline {
+    agent {
+        label 'stapp01'
+    }
+
+    stages {
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    set -e
+
+                    cd /var/www/html
+
+                    echo "Pulling latest changes..."
+                    git pull origin master
+
+                    echo "Current deployed commit:"
+                    git log -1 --oneline
+
+                    echo "Current index.html:"
+                    cat index.html
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh '''
+                    set -e
+
+                    echo "Testing application through Load Balancer..."
+
+                    WEB_CONTENT=$(curl -fsS http://stlb01:8091)
+                    FILE_CONTENT=$(cat /var/www/html/index.html)
+
+                    echo "Website content:"
+                    echo "$WEB_CONTENT"
+
+                    echo "Local index.html:"
+                    echo "$FILE_CONTENT"
+
+                    if [ "$WEB_CONTENT" = "$FILE_CONTENT" ]; then
+                        echo "Website content matches deployed index.html"
+                    else
+                        echo "Website content does not match deployed index.html"
+                        exit 1
+                    fi
+                '''
+            }
+        }
+    }
+}
