@@ -1,0 +1,4 @@
+[appservers]
+stapp01 ansible_host=stapp01 ansible_user=tony ansible_ssh_private_key_file=/home/thor/.ssh/id_ed25519
+stapp02 ansible_host=stapp02 ansible_user=steve ansible_ssh_private_key_file=/home/thor/.ssh/id_ed25519
+stapp03 ansible_host=stapp03 ansible_user=banner ansible_ssh_private_key_file=/home/thor/.ssh/id_ed25519

@@ -1,0 +1,13 @@
+---
+- name: Create web.txt on all application servers
+  hosts: appservers
+  become: true
+
+  tasks:
+    - name: Create blank web.txt with required ownership and permissions
+      ansible.builtin.file:
+        path: /usr/src/web.txt
+        state: touch
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0744"
