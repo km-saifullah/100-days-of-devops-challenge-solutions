@@ -1,0 +1,4 @@
+[appservers]
+stapp01 ansible_host=stapp01 ansible_user=tony
+stapp02 ansible_host=stapp02 ansible_user=steve
+stapp03 ansible_host=stapp03 ansible_user=banner

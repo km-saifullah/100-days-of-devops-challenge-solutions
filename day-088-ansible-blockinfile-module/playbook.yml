@@ -1,0 +1,35 @@
+---
+- name: Install and configure HTTPD on all app servers
+  hosts: appservers
+  become: true
+
+  tasks:
+    - name: Install httpd package
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Ensure httpd service is running
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Configure index.html
+      ansible.builtin.blockinfile:
+        path: /var/www/html/index.html
+        block: |
+          Welcome to XfusionCorp!
+          This is  Nautilus sample file, created using Ansible!
+          Please do not modify this file manually!
+
+    - name: Set index.html ownership
+      ansible.builtin.file:
+        path: /var/www/html/index.html
+        owner: apache
+        group: apache
+
+    - name: Set index.html permissions
+      ansible.builtin.file:
+        path: /var/www/html/index.html
+        mode: "0744"
