@@ -1,0 +1,16 @@
+---
+- name: Install and enable vsftpd on all application servers
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install vsftpd package
+      ansible.builtin.yum:
+        name: vsftpd
+        state: present
+
+    - name: Start and enable vsftpd service
+      ansible.builtin.service:
+        name: vsftpd
+        state: started
+        enabled: true
