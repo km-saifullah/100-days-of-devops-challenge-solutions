@@ -1,0 +1,87 @@
+---
+- name: Create blog.txt on Application Server 1 with ACL for group tony
+  hosts: stapp01
+  become: true
+
+  tasks:
+    - name: Ensure /opt/finance directory exists
+      ansible.builtin.file:
+        path: /opt/finance
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Create empty blog.txt owned by root
+      ansible.builtin.file:
+        path: /opt/finance/blog.txt
+        state: touch
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Grant group tony read (r) permission via ACL
+      ansible.posix.acl:
+        path: /opt/finance/blog.txt
+        entity: tony
+        etype: group
+        permissions: r
+        state: present
+
+- name: Create story.txt on Application Server 2 with ACL for user steve
+  hosts: stapp02
+  become: true
+
+  tasks:
+    - name: Ensure /opt/finance directory exists
+      ansible.builtin.file:
+        path: /opt/finance
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Create empty story.txt owned by root
+      ansible.builtin.file:
+        path: /opt/finance/story.txt
+        state: touch
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Grant user steve read/write (rw) permission via ACL
+      ansible.posix.acl:
+        path: /opt/finance/story.txt
+        entity: steve
+        etype: user
+        permissions: rw
+        state: present
+
+- name: Create media.txt on Application Server 3 with ACL for group banner
+  hosts: stapp03
+  become: true
+
+  tasks:
+    - name: Ensure /opt/finance directory exists
+      ansible.builtin.file:
+        path: /opt/finance
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Create empty media.txt owned by root
+      ansible.builtin.file:
+        path: /opt/finance/media.txt
+        state: touch
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Grant group banner read/write (rw) permission via ACL
+      ansible.posix.acl:
+        path: /opt/finance/media.txt
+        entity: banner
+        etype: group
+        permissions: rw
+        state: present
